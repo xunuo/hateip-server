@@ -1,0 +1,23 @@
+{
+  "name": "hateip-server",
+  "version": "0.0.1",
+  "description": "A tool for who hate enter ip everytime -- server.",
+  "keywords": [
+    "ddns",
+    "node",
+    "ip",
+    "fast enter",
+    "server"
+  ],
+  "author": "xunuo <i@xunuo.com>",
+  "repository": "xunuo/hateip-server",
+  "bin": {
+    "hateip-server": "bin/hateip-server"
+  },
+  "dependencies": {
+    "diet": "^0.9.3",
+    "request": "^2.55.0"
+  },
+  "analyze": true,
+  "license": "MIT"
+}
