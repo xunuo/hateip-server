@@ -51,17 +51,15 @@ var runServer = function(args){
             },
             function(error, response, body){
                 
-                //console.log(body);
+
                 
                 if(response.statusCode == 200){
                     
+                    //console.log(body);
                     
-                    var callback = JSON.parse(body);
-                    console.log(callback);
-    
                     // 没找到记录
                     if(callback.status.code == '10'){
-                         console.log('新增A记录');
+                         console.log('Add A record.');
                          request.post(
                             {
                                 url: apiUrlPrefix + '/Record.Create',
@@ -92,7 +90,7 @@ var runServer = function(args){
                          );
                     }else{
                         // 已有重复记录
-                        console.log('已有重复记录,修改记录');
+                        console.log('Modify A record.');
                         console.log(callback);
                         var recordId = callback.records[0].id;
     
