@@ -39,3 +39,7 @@ hateipServer.runServer({
     domain : 'hateip.com'
 });
 ```
+
+## Example
+
+> http://hateip.com:999/?user=starcraft&ip=127.0.0.1
