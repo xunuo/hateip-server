@@ -73,7 +73,7 @@ var runServer = function(args){
                                     user_token:loginToken,
                                     sub_domain : user,
                                     value : ip,
-                                    ttl : 5,
+                                    ttl : 1,
                                     record_type : 'A',
                                     record_line : 'default',
                                     format : 'json'
@@ -108,7 +108,7 @@ var runServer = function(args){
                                     sub_domain : user,
                                     record_id : recordId,
                                     value : ip,
-                                    ttl : 5,
+                                    ttl : 1,
                                     record_type : 'A',
                                     record_line : 'default',
                                     format : 'json'
