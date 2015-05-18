@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+'use strict';
+var argv = require('commander'),    
+    hateipServer = require('../index.js')
+    ;
+
+argv
+  .version('0.0.1')
+  .option('-t, --dnsPodToken [token]', 'dnspod login token.')
+  .option('-d, --serverDomain [domain]', 'server domain.')
+  .option('-p, --serverPort [port]', 'server port.')
+  .parse(process.argv);
+
+hateipServer.runServer({
+    token : argv.dnsPodToken,
+    port : argv.serverPort,
+    domain : argv.serverDomain
+});

@@ -1,6 +1,6 @@
 {
   "name": "hateip-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A tool for who hate enter ip everytime -- server.",
   "keywords": [
     "ddns",
@@ -12,9 +12,10 @@
   "author": "xunuo <i@xunuo.com>",
   "repository": "xunuo/hateip-server",
   "bin": {
-    "hateip-server": "bin/hateip-server"
+    "hateip-server": "bin/server"
   },
   "dependencies": {
+    "commander": "^2.8.1",
     "diet": "^0.9.3",
     "request": "^2.55.0"
   },
