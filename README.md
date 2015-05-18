@@ -19,12 +19,23 @@ npm install hateip-server
 - with bin  
   
 ```
-hateip-server -t "xxxxx,xxxxxxxxxx" -p "9999" -d "localhost"  
+hateip-server -t "xxxxx,xxxxxxxxxx" -p "9999" -d "hateip.com"  
 ```
 
 or  
 
 
 ```
-./bin/server -t "xxxxx,xxxxxxxxxx" -p "9999" -d "localhost"  
+./bin/server -t "xxxxx,xxxxxxxxxx" -p "9999" -d "hateip.com"  
+```
+
+- with api
+
+```
+var hateipServer = require('hateip-server');
+hateipServer.runServer({
+    token : 'xxxxx,xxxxxxxxxx',
+    port : '9999',
+    domain : 'hateip.com'
+});
 ```
