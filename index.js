@@ -4,8 +4,12 @@ var runServer = function(args){
     
     var loginToken = args.token,
         port = args.port ? args.port : 999,
-        domain = args.domain ? args.domain : 'hateip.com'
+        domain = args.domain ? args.domain : 'hateip.com',
+        apiUrlPrefix = 'https://api.dnspod.com'
         ;
+    
+    
+
     
     if(!loginToken){
         console.log('need login token.');
@@ -18,7 +22,6 @@ var runServer = function(args){
         ;
     
     app.listen('http://' + domain + ':' + port);
-    
     // Listen on GET /
     // example : ?user=snow&ip=127.0.0.1
     app.get('/', function($){
@@ -34,41 +37,52 @@ var runServer = function(args){
         
         request.post(
             {
-                url:'https://dnsapi.cn/Record.List',
+                url: apiUrlPrefix + '/Record.List',
+                headers: {
+                  'User-Agent': 'hateip'
+                },
                 form:{
                     domain : 'hateip.com',
-                    login_token:loginToken,
+                    user_token:loginToken,
                     sub_domain : user,
                     format : 'json'
                 },
                 encoding:'utf8'
             },
             function(error, response, body){
+                
+                //console.log(body);
+                
                 if(response.statusCode == 200){
                     
                     
                     var callback = JSON.parse(body);
+                    console.log(callback);
     
                     // 没找到记录
                     if(callback.status.code == '10'){
                          console.log('新增A记录');
                          request.post(
                             {
-                                url:'https://dnsapi.cn/Record.Create',
+                                url: apiUrlPrefix + '/Record.Create',
+                                headers: {
+                                  'User-Agent': 'hateip2'
+                                },
                                 form:{
                                     domain : 'hateip.com',
-                                    login_token:loginToken,
+                                    user_token:loginToken,
                                     sub_domain : user,
                                     value : ip,
+                                    ttl : 5,
                                     record_type : 'A',
-                                    record_line : '默认',
+                                    record_line : 'default',
                                     format : 'json'
                                 },
                                 encoding:'utf8'
                             },
                             function(error, response, body){
                                 if(response.statusCode == 200){
-                                    console.log(body);
+                                    //console.log(body);
                                     $.end('{ "code" : 200, "msg" : "create [' + user + '.hateip.com -> ' + ip + '] success." }');
                                 }else{
                                     console.log(response.statusCode);
@@ -79,26 +93,31 @@ var runServer = function(args){
                     }else{
                         // 已有重复记录
                         console.log('已有重复记录,修改记录');
+                        console.log(callback);
                         var recordId = callback.records[0].id;
     
                          request.post(
                             {
-                                url:'https://dnsapi.cn/Record.Modify',
+                                url: apiUrlPrefix + '/Record.Modify',
+                                headers: {
+                                  'User-Agent': 'hateip'
+                                },
                                 form:{
                                     domain : 'hateip.com',
-                                    login_token:loginToken,
+                                    user_token: loginToken,
                                     sub_domain : user,
                                     record_id : recordId,
                                     value : ip,
+                                    ttl : 5,
                                     record_type : 'A',
-                                    record_line : '默认',
+                                    record_line : 'default',
                                     format : 'json'
                                 },
                                 encoding:'utf8'
                             },
                             function(error, response, body){
                                 if(response.statusCode == 200){
-                                    console.log(body);
+                                    //console.log(body);
                                     $.end('{ "code" : 200, "msg" : "modify [' + user + '.hateip.com -> ' + ip + '] success." }');
                                 }else{
                                     console.log(response.statusCode);
