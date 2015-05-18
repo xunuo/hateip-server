@@ -1,7 +1,4 @@
-// Create an app
-var request = require('request')
-    ;
-
+var request = require('request');
 
 var runServer = function(args){
     
