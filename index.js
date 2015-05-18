@@ -51,7 +51,7 @@ var runServer = function(args){
             },
             function(error, response, body){
                 
-
+                var callback = JSON.parse(body);
                 
                 if(response.statusCode == 200){
                     
@@ -91,7 +91,7 @@ var runServer = function(args){
                     }else{
                         // 已有重复记录
                         console.log('Modify A record.');
-                        console.log(callback);
+
                         var recordId = callback.records[0].id;
     
                          request.post(

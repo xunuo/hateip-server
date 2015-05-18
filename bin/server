@@ -2,11 +2,11 @@
 'use strict';
 var argv = require('commander'),    
     hateipServer = require('../index.js'),
-    package = require('../package.json')
+    packageJson = require('../package.json')
     ;
 
 argv
-  .version(package.version)
+  .version(packageJson.version)
   .option('-t, --dnsPodToken [token]', 'dnspod login token.')
   .option('-d, --serverDomain [domain]', 'server domain.')
   .option('-p, --serverPort [port]', 'server port.')
