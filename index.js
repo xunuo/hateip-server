@@ -35,6 +35,7 @@ var runServer = function(args){
         request.post(
             {
                 url: apiUrlPrefix + '/Record.List',
+                json: true,
                 headers: {
                   'User-Agent': 'hateip'
                 },
@@ -46,13 +47,11 @@ var runServer = function(args){
                 },
                 encoding:'utf8'
             },
-            function(error, response, body){
-                
-                var callback = JSON.parse(body);
+            function(error, response, callback){
                 
                 if(response.statusCode == 200){
                     
-                    //console.log(body);
+                    //console.log(callback);
                     
                     // 没找到记录
                     if(callback.status.code == '10'){
@@ -60,6 +59,7 @@ var runServer = function(args){
                          request.post(
                             {
                                 url: apiUrlPrefix + '/Record.Create',
+                                json: true,
                                 headers: {
                                   'User-Agent': 'hateip2'
                                 },
@@ -75,9 +75,9 @@ var runServer = function(args){
                                 },
                                 encoding:'utf8'
                             },
-                            function(error, response, body){
+                            function(error, response, callback){
                                 if(response.statusCode == 200){
-                                    //console.log(body);
+                                    //console.log(callback);
                                     $.end('{ "code" : 200, "msg" : "create [' + name + '.hateip.com -> ' + ip + '] success." }');
                                 }else{
                                     console.log(response.statusCode);
@@ -94,6 +94,7 @@ var runServer = function(args){
                          request.post(
                             {
                                 url: apiUrlPrefix + '/Record.Modify',
+                                json: true,
                                 headers: {
                                   'User-Agent': 'hateip'
                                 },
@@ -110,9 +111,9 @@ var runServer = function(args){
                                 },
                                 encoding:'utf8'
                             },
-                            function(error, response, body){
+                            function(error, response, callback){
                                 if(response.statusCode == 200){
-                                    //console.log(body);
+                                    //console.log(callback);
                                     $.end('{ "code" : 200, "msg" : "modify [' + name + '.hateip.com -> ' + ip + '] success." }');
                                 }else{
                                     console.log(response.statusCode);
