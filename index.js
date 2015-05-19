@@ -8,9 +8,6 @@ var runServer = function(args){
         apiUrlPrefix = 'https://api.dnspod.com'
         ;
     
-    
-
-    
     if(!loginToken){
         console.log('need login token.');
         return false;
@@ -23,15 +20,15 @@ var runServer = function(args){
     
     app.listen('http://' + domain + ':' + port);
     // Listen on GET /
-    // example : ?user=snow&ip=127.0.0.1
+    // example : ?name=snow&ip=127.0.0.1
     app.get('/', function($){
         
-        var user = $.query.user,
+        var name = $.query.name,
             ip = $.query.ip
             ;
         
-        if(!user || !ip){
-            $.end('{ "code" : 500, "msg" : "no user or ip." }');
+        if(!name || !ip){
+            $.end('{ "code" : 500, "msg" : "no name or ip." }');
             return false;
         }
         
@@ -44,7 +41,7 @@ var runServer = function(args){
                 form:{
                     domain : 'hateip.com',
                     user_token:loginToken,
-                    sub_domain : user,
+                    sub_domain : name,
                     format : 'json'
                 },
                 encoding:'utf8'
@@ -69,7 +66,7 @@ var runServer = function(args){
                                 form:{
                                     domain : 'hateip.com',
                                     user_token:loginToken,
-                                    sub_domain : user,
+                                    sub_domain : name,
                                     value : ip,
                                     ttl : 1,
                                     record_type : 'A',
@@ -81,10 +78,10 @@ var runServer = function(args){
                             function(error, response, body){
                                 if(response.statusCode == 200){
                                     //console.log(body);
-                                    $.end('{ "code" : 200, "msg" : "create [' + user + '.hateip.com -> ' + ip + '] success." }');
+                                    $.end('{ "code" : 200, "msg" : "create [' + name + '.hateip.com -> ' + ip + '] success." }');
                                 }else{
                                     console.log(response.statusCode);
-                                    $.end('{ "code" : 500, "msg" : "create [' + user + '.hateip.com -> ' + ip + '] success." }');
+                                    $.end('{ "code" : 500, "msg" : "create [' + name + '.hateip.com -> ' + ip + '] success." }');
                                 }
                             }
                          );
@@ -103,7 +100,7 @@ var runServer = function(args){
                                 form:{
                                     domain : 'hateip.com',
                                     user_token: loginToken,
-                                    sub_domain : user,
+                                    sub_domain : name,
                                     record_id : recordId,
                                     value : ip,
                                     ttl : 1,
@@ -116,10 +113,10 @@ var runServer = function(args){
                             function(error, response, body){
                                 if(response.statusCode == 200){
                                     //console.log(body);
-                                    $.end('{ "code" : 200, "msg" : "modify [' + user + '.hateip.com -> ' + ip + '] success." }');
+                                    $.end('{ "code" : 200, "msg" : "modify [' + name + '.hateip.com -> ' + ip + '] success." }');
                                 }else{
                                     console.log(response.statusCode);
-                                    $.end('{ "code" : 500, "msg" : "modify [' + user + '.hateip.com -> ' + ip + '] error." }');
+                                    $.end('{ "code" : 500, "msg" : "modify [' + name + '.hateip.com -> ' + ip + '] error." }');
                                 }
                             }
                          );

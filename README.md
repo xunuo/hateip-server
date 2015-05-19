@@ -40,6 +40,6 @@ hateipServer.runServer({
 });
 ```
 
-## Example
+## URL Example
 
-> http://hateip.com:999/?user=starcraft&ip=127.0.0.1
+> http://hateip.com:999/?name=starcraft&ip=127.0.0.1
