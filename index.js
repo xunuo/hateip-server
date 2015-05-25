@@ -61,7 +61,7 @@ var runServer = function(args){
                                 url: apiUrlPrefix + '/Record.Create',
                                 json: true,
                                 headers: {
-                                  'User-Agent': 'hateip2'
+                                  'User-Agent': 'hateip'
                                 },
                                 form:{
                                     domain : 'hateip.com',
