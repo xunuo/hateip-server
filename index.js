@@ -38,7 +38,8 @@ var runServer = function(args){
             token : token,  // your login token, you can find how to get this at the top.
             domain : domain, // your domain
             subDomain : subDomain, // which subdomain do you want to set. default : @
-            ip : ip // specific the IP
+            ip : ip, // specific the IP
+            ttl : 5 // set ttl
         }).then(function(res){
             $.end(JSON.stringify(res));
         },function(error){

@@ -1,6 +1,6 @@
 {
   "name": "hateip-server",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A tool for who hate enter ip everytime -- server.",
   "keywords": [
     "ddns",
