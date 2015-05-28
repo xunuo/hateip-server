@@ -40,9 +40,9 @@ var runServer = function(args){
             subDomain : subDomain, // which subdomain do you want to set. default : @
             ip : ip // specific the IP
         }).then(function(res){
-            $.end(res);
+            $.end(JSON.stringify(res));
         },function(error){
-            $.end(error);
+            $.end(JSON.stringify(error));
         });
 
     });
