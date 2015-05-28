@@ -1,7 +1,7 @@
 var runServer = function(args){
     
     var token = args.token,
-        server = args.server ? args.server : 'dnspod.com',
+        dnspodServer = args.server ? args.server : 'dnspod.com',
         domain = args.domain ? args.domain : 'hateip.com',
         port = args.port ? args.port : 999
         ;
@@ -10,7 +10,7 @@ var runServer = function(args){
         console.log('Need login token.');
         return false;
     }
-    
+ 
     var 
         ddnspod = require('ddnspod'),
         server = require('diet'),
@@ -34,7 +34,7 @@ var runServer = function(args){
         
         // DDNS
         ddnspod({
-            server : server, // which server you are using . dnspod.com (default) | dnspod.cn
+            server : dnspodServer, // which server you are using . dnspod.com (default) | dnspod.cn
             token : token,  // your login token, you can find how to get this at the top.
             domain : domain, // your domain
             subDomain : subDomain, // which subdomain do you want to set. default : @
