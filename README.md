@@ -34,9 +34,10 @@ or
 ```
 var hateipServer = require('hateip-server');
 hateipServer.runServer({
+    server : 'dnspod.com',
     token : 'xxxxx,xxxxxxxxxx',
-    port : '9999',
-    domain : 'hateip.com'
+    domain : 'hateip.com',
+    port : '9999'
 });
 ```
 

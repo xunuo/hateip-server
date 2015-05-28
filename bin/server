@@ -7,12 +7,14 @@ var argv = require('commander'),
 
 argv
   .version(packageJson.version)
+  .option('-s, --server [server]', 'dnspod server.')
   .option('-t, --dnsPodToken [token]', 'dnspod login token.')
   .option('-d, --serverDomain [domain]', 'server domain.')
   .option('-p, --serverPort [port]', 'server port.')
   .parse(process.argv);
 
 hateipServer.runServer({
+    server : argv.server,
     token : argv.dnsPodToken,
     port : argv.serverPort,
     domain : argv.serverDomain
