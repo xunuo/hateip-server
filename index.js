@@ -41,8 +41,12 @@ var runServer = function(args){
             ip : ip, // specific the IP
             ttl : 5 // set ttl
         }).then(function(res){
+            delete res.dnspodArgs.user_token;
+            delete res.dnspodArgs.login_token;
             $.end(JSON.stringify(res));
         },function(error){
+            delete res.dnspodArgs.user_token;
+            delete res.dnspodArgs.login_token;
             $.end(JSON.stringify(error));
         });
 
