@@ -41,12 +41,16 @@ var runServer = function(args){
             ip : ip, // specific the IP
             ttl : 5 // set ttl
         }).then(function(res){
-            delete res.dnspodArgs.user_token;
-            delete res.dnspodArgs.login_token;
+            if(res.dnspodApiArgs){
+                delete res.dnspodApiArgs.params.login_token;
+                delete res.dnspodApiArgs.params.user_token; 
+            }
             $.end(JSON.stringify(res));
         },function(error){
-            delete res.dnspodArgs.user_token;
-            delete res.dnspodArgs.login_token;
+            if(error.dnspodApiArgs){
+                delete error.dnspodApiArgs.params.login_token;
+                delete error.dnspodApiArgs.params.user_token;
+            }
             $.end(JSON.stringify(error));
         });
 
