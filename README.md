@@ -43,4 +43,4 @@ hateipServer.runServer({
 
 ## URL Example
 
-> http://hateip.com:999/?name=starcraft&ip=127.0.0.1
+> http://hateip.com:999/?name=starcraft&ip=127.0.0.1 
